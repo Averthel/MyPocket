@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource name="jdbc/mypocket_database"
+              auth="Container"
+              type="javax.sql.DataSource"
+              initialSize="10"
+              maxTotal="100"
+              maxIdle="30"
+              maxWaitMillis="10000"
+              username="root"
+              driverClassName="com.mysql.jdbc.Driver"
+              password="admin"
+              url="jdbc:mysql://localhost:3306/mypocket_database?useSSL=false&amp;serverTimezone=UTC" />
+</Context>
