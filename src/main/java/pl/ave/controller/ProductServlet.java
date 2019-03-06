@@ -28,15 +28,26 @@ public class ProductServlet extends HttpServlet {
             ProductDao dao = new ProductDao();
             Product product = null;
             String operation = null;
-            if ("add".equals(option)) {
+            if ("search".equals(option)) {
+                product = dao.read(name);
+                operation = "search";
+            } else if ("add".equals(option)) {
                 product = new Product(name, description, category, price, count);
                 dao.create(product);
                 operation = "add";
+            } else if ("update".equals(option)) {
+                product = new Product(name, description, category, price, count);
+                dao.update(product);
+                operation = "update";
+            } else if ("delete".equals(option)) {
+                product = new Product(name, description, category, price, count);
+                dao.delete(product);
+                operation = "delete";
             }
             request.setAttribute("option", operation);
             request.setAttribute("product", product);
             request.getRequestDispatcher("result.jsp").forward(request, response);
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
