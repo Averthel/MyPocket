@@ -21,8 +21,14 @@ public class ProductServlet extends HttpServlet {
         String name = request.getParameter("name");
         String description = request.getParameter("description");
         String category = request.getParameter("category");
-        double price = Double.parseDouble(request.getParameter("price"));
-        int count = Integer.parseInt(request.getParameter("count"));
+        double price = 0;
+        if(request.getParameter("price") != null && request.getParameter("price") != "") {
+            price = Double.parseDouble(request.getParameter("price"));
+        }
+        int count = 0;
+        if(request.getParameter("count") != null && request.getParameter("count") != "") {
+            count = Integer.parseInt(request.getParameter("count"));
+        }
         String option = request.getParameter("option");
         try {
             ProductDao dao = new ProductDao();
@@ -49,6 +55,7 @@ public class ProductServlet extends HttpServlet {
             request.getRequestDispatcher("result.jsp").forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }
 
