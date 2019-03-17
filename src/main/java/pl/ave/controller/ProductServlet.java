@@ -1,8 +1,10 @@
 package pl.ave.controller;
 
 
+import pl.ave.dao.DaoFactory;
 import pl.ave.dao.ProductDao;
 import pl.ave.model.Product;
+import pl.ave.util.DbOperationException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,7 +33,8 @@ public class ProductServlet extends HttpServlet {
         }
         String option = request.getParameter("option");
         try {
-            ProductDao dao = new ProductDao();
+            DaoFactory factory = DaoFactory.getDaoFactory(DaoFactory.MYSQL_DAO);
+            ProductDao dao = factory.getProductDao();
             Product product = null;
             String operation = null;
             if ("search".equals(option)) {
@@ -53,7 +56,7 @@ public class ProductServlet extends HttpServlet {
             request.setAttribute("option", operation);
             request.setAttribute("product", product);
             request.getRequestDispatcher("result.jsp").forward(request, response);
-        } catch (SQLException e) {
+        } catch (DbOperationException e) {
             e.printStackTrace();
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
