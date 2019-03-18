@@ -53,6 +53,7 @@ public class MysqlProductDao implements ProductDao {
         return resultProduct;
     }
 
+
     public void update(Product product) {
         try (Connection conn = ConnectionProvider.getConnection();
              PreparedStatement prepStmt = conn.prepareStatement(UPDATE);) {

@@ -9,12 +9,13 @@ public class User {
 
     public User(){}
 
-    public User(User user){
-        this.id = user.id;
-        this.username = user.username;
-        this.email = user.email;
-        this.username = user.password;
+    public User(String username, String email, String password){
+        this.username = username;
+        this.email = email;
+        this.password = password;
     }
+
+
 
     public long getId() {
         return id;
@@ -62,7 +63,6 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
                 ", active=" + active +
                 '}';
     }
@@ -91,6 +91,4 @@ public class User {
         result = 31 * result + (isActive() ? 1 : 0);
         return result;
     }
-
-
 }

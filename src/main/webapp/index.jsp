@@ -12,7 +12,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>MyPocket</title>
 </head>
-<body>
+
     <h1>Twój Portfel</h1>
 
 <form action="ProductServlet" method="post">
@@ -32,8 +32,35 @@
     <input type="submit" value="Wyślij">
 
 </form>
-</body>
-</html>
+
+<br /><br />
+<h2>Register Panel</h2>
+
+<form action="UserServlet" method="post">
+    <input placeholder="Nazwa użytkownika" type="text" name="username">
+    <br />
+    <input placeholder="E-mail" type="email" name="email">
+    <br />
+    <input placeholder="Hasło" type="password" name="password">
+    <br />
+    <button type="submit" name="register" value="register">Zarejestruj się!</button><button type="submit" name="update" value="update">Zmień email i hasło</button>
+</form>
+<br />
+<form action="UserServlet" method="post">
+    <input placeholder="Szukaj..." type="text" name="findUser">
+    <br />
+    <button type="submit" name="search" value="search">Szukaj!</button>
+</form>
+
+<br />
+
+<form action="UserServlet" method="post">
+    <h3>Usuń usera</h3>
+    <input placeholder="Nazwa użytkownika" type="text" name="userForDelete">
+    <br />
+    <button type="submit" name="delete" value="delete">Usuń!</button>
+
+</form>
 
 
 

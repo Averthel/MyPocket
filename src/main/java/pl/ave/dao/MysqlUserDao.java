@@ -12,8 +12,8 @@ import java.sql.SQLException;
 public class MysqlUserDao implements UserDao {
 
     private final static String CREATE = "INSERT INTO user(username, email, password) VALUES(?,?,?)";
-    private final static String READ = "SELECT username, email, is_active FROM user WHERE username =?;";
-    private final static String DELETE = "DELETE user WHERE username=?;";
+    private final static String READ = "SELECT username, email, active, user_id FROM user WHERE username =?;";
+    private final static String DELETE = "DELETE FROM user WHERE username=?;";
     private final static String UPDATE = "UPDATE user SET username=?, email=?, password=? WHERE username=?;";
 
 
@@ -41,9 +41,10 @@ public class MysqlUserDao implements UserDao {
             ResultSet resultSet = prepStmt.executeQuery();
             if(resultSet.next()){
                 resultUser = new User();
+                resultUser.setId(resultSet.getLong("user_id"));
                 resultUser.setUsername(resultSet.getString("username"));
                 resultUser.setEmail(resultSet.getString("email"));
-                resultUser.setActive(resultSet.getBoolean("is_active"));
+                resultUser.setActive(resultSet.getBoolean("active"));
             }
         }catch(SQLException e){
             throw new DbOperationException(e);
